@@ -41,3 +41,61 @@
             Ingestion                         Retrieval
 Dense   chunk → BAAI → store            query → BAAI → search
 Sparse  chunk → BM25 → store            query → BM25 → search
+
+## `ingestion.py`
+
+✓ PyPDFLoader          — loads PDF
+✓ RecursiveCharacter   — advanced chunking (chunk_size + chunk_overlap)
+✓ HuggingFaceEmbeddings — creates embedding model
+✓ BM25Encoder          — learns vocabulary + word frequencies → saves bm25.json
+✓ PineconeVectorStore  — ingests dense vectors into Pinecone
+
+## `retriever.py`
+
+✓ load_retriever()
+  → same BAAI embedding model
+  → dense + sparse Pinecone index variables
+  → BM25Encoder loads bm25.json vocabulary
+  → CrossEncoder reranker loaded
+
+✓ retrieve()
+  → query → BAAI → dense vector
+  → query → BM25 → sparse vector
+  → dense vector → searches dense index
+  → sparse vector → searches sparse index
+  → RRF combines both ranked lists
+    (alpha * 1/(rank+60) for dense)
+    (1-alpha * 1/(rank+60) for sparse)
+    chunks in both lists get highest score
+  → cross encoder reranks top k*2
+  → returns top k chunks sorted descending
+
+## `assistant.py`
+
+✓ LLM — ChatGroq (llama-3.1-8b-instant)
+
+✓ Prompt template — 3 parts:
+  → system message (context + instructions)
+  → MessagesPlaceholder (history)
+  → human message (query)
+
+✓ ChatMessageHistory — stores conversation
+
+✓ chat() function:
+  → retrieve() → get top 3 chunks
+  → format_context() → join chunks into string
+  → prompt_template.format_messages() → fill context + history + question
+  → llm.invoke() → get answer
+  → add_user_message() → save query to history
+  → add_ai_message() → save answer to history
+  → return answer
+
+✓ __main__:
+  → load_retriever() → load all components
+  → while True loop → keep asking query
+  → calls chat() → prints answer
+  → breaks when user types "exit"
+
+
+## Output
+
