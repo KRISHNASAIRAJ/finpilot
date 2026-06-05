@@ -99,3 +99,43 @@ Sparse  chunk → BM25 → store            query → BM25 → search
 
 ## Output
 
+![alt text](Output/image.png)
+
+![alt text](Output/image2.png)
+
+## Instructions to run
+
+`git clone https://github.com/KRISHNASAIRAJ/finpilot.git`
+
+`cd finpilot`
+
+`pip install uv`
+
+`uv sync`
+
+#### Add Your API Keys
+
+PINECONE_API_KEY=your_key
+INDEX_NAME=your_dense_index_name
+SPARSE_INDEX_NAME=your_sparse_index_name
+GROQ_API_KEY=your_key
+
+#### Add your portfolio PDFs
+
+`cp your_portfolio.pdf data/`
+
+#### Run ingestion (once)
+
+`uv run ingestion.py`
+
+#### Start chatting
+
+`uv run assistant.py`
+
+#### Sample Questions
+
+* What is my total portfolio value?
+* What is my dividend yield?
+* What are my top performing stocks?
+* How risky is my portfolio compared to Nifty 50?
+* Is my portfolio overvalued or undervalued?
