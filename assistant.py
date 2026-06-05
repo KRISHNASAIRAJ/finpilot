@@ -45,7 +45,7 @@ if __name__ == "__main__":
     while True:
         query = input("You: ")
         if query.lower() == "exit":
-            print("Goodbye!")
+            print("Thanks for using!")
             break
         answer = chat(query, dense_index, sparse_index, bm25, embeddings, reranker)
         print(f"\nFinPilot: {answer}\n")
