@@ -25,7 +25,7 @@ def chunking(document,chunk_size,chunk_overlap):
     print("Document chunked successfully.")
     return chunks
 
-def embedding(chunks):
+def embedding():
     embeddings=HuggingFaceEmbeddings(model_name="BAAI/bge-large-en-v1.5")
     print("Embeddings generated successfully.")
     return embeddings
@@ -38,5 +38,5 @@ if __name__ == "__main__":
     file_path="data/report.pdf"
     document=load_pdf(file_path)
     chunks=chunking(document,1000,100)
-    embeddings=embedding(chunks)
+    embeddings=embedding()
     ingestion(chunks,embeddings)
