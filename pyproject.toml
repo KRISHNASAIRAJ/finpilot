@@ -12,6 +12,7 @@ dependencies = [
     "langchain-huggingface>=1.2.2",
     "langchain-pinecone>=0.2.13",
     "langchain-text-splitters>=1.1.2",
+    "pinecone>=7.3.0",
     "pinecone-text>=0.11.0",
     "pypdf>=6.12.2",
     "python-dotenv>=1.2.2",
