@@ -35,6 +35,10 @@ test_data = [
         "question": "What is my portfolio PEG ratio?",
         "ground_truth": "1.16"
     },
+    {
+        "question": "What is the capital of Hyderabad?",
+        "ground_truth": "This question is not relevant to the portfolio and should not be answered based on the context."
+    },
 ]
 
 def evaluate_faithfulness(question, answer, context, llm):

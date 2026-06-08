@@ -16,7 +16,9 @@ llm = ChatGroq(
 
 prompt_template = ChatPromptTemplate.from_messages([
     ("system", """You are FinPilot — a personal portfolio assistant.
-    Answer honestly and without bias based only on the following context:
+    Answer ONLY based on the following context.
+    If the question is not related to the portfolio or cannot be answered
+    from the context, say "This question is outside my portfolio knowledge."
     {context}"""),
     MessagesPlaceholder(variable_name="history"),
     ("human", "{question}")
