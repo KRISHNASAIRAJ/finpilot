@@ -237,9 +237,8 @@ Sparse  chunk → BM25 → store            query → BM25 → search
 
 ## Output
 
-![alt text](Output/image.png)
+<img width="1372" height="749" alt="Screenshot 2026-06-05 163941" src="https://github.com/user-attachments/assets/908f2868-f8ff-4d1b-8efe-c085b72835c7" />
 
-![alt text](Output/image2.png)
 
 ## Instructions to run
 
